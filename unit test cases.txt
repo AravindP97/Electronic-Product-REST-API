@@ -1,0 +1,141 @@
+Provide steps to run unit test case as well
+    Positive
+        Signup:
+            Create the user with required fields like username, email, password
+            encrypted in the password value and save it
+            URL: http://127.0.0.1:8000/api/auth/signup/
+            PayLoad:
+                {
+                    "username":"Aravind",
+                    "email":"aravind.p@mitrahsoft.com",
+                    "password":"Aravind@123#",
+                    "password2":"Aravind@123#"
+                }
+            response:
+                {
+                    'Message': 'New User Created Successfully'
+                }
+        
+        Login:
+            url: http://127.0.0.1:8000/api/auth/login/
+            Enter the email and password check the user is exists or not.
+            if the user exist to generate the authorization token
+            PayLoad: 
+                {
+                    "email": "aravind.p@mitrahsoft.com"
+                    "password":"Aravind@123#"
+                }
+            response:
+                {
+                    'authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NiwiZXhwIjoxNjM3MTU5MDY5LCJpYXQiOjE2MzcxNTU0Njl9.CQeU_eL2A5XjCcfqH7W6ldtDx0pGnQOQH6e9QI8J_8o",
+                    'message': 'User Login Successfully'
+                }
+        Products:
+            Get all products:
+                URL: http://127.0.0.1:8000/api/products/
+            Get a single product:
+                URL: http://127.0.0.1:8000/api/products/1/
+            Create Product:
+                User selects the choice option only mobile(M) and laptop(L)
+                If mobile is selected required fields like RAM, Processor,Screen Size and Color
+                If the laptop is selected required fields like RAM, Processor and Hd Capacity
+                URL: http://127.0.0.1:8000/api/products/
+                Payload:
+                    {
+                        "name": "DELL",
+                        "description": "Gaming Laptop",
+                        "category": "L",
+                        "laptop": {
+                            "hd_capacity": "FHD",
+                            "processor": "i10",
+                            "ram": "32"
+                        },
+                        "mobile": {
+                            "ram": "",
+                            "processor": "",
+                            "screen_size": "",
+                            "color": ""
+                        }
+                    }
+                Response:
+                    {
+                        'Message': 'Product Created Successfully'
+                    }
+            Update Product:
+                url: http://127.0.0.1:8000/api/products/1/
+                Payload:
+                    {
+                        "id": 1
+                        "name": "DELL",
+                        "description": "Gaming Laptop",
+                        "category": "L",
+                        "laptop": {
+                            "id": 1,
+                            "hd_capacity": "FHD",
+                            "processor": "i10",
+                            "ram": "32"
+                        },
+                        "mobile": {
+                            "id": 1,
+                            "ram": "",
+                            "processor": "",
+                            "screen_size": "",
+                            "color": ""
+                        }
+                    }
+                Response:
+                    {
+                        'Message': 'Product Updated Successfully'
+                    }
+            Delete Product:
+                url: http://127.0.0.1:8000/api/products/1/
+                Response:
+                    {
+                        'Message': 'Product Deleted Successfully'
+                    }
+   
+    Negative:
+        Signup:
+            URL: http://127.0.0.1:8000/api/auth/signup/
+            All fields mandatory
+            Email value is valid or not
+            PayLoad:
+                {
+                    "username":"Aravind",
+                    "email":"Aravind",
+                    "password":"Aravind@123#",
+                    "password2":"Aravind@123#"
+                }
+            response:
+                {
+                    "email": [
+                        "Enter a valid email address."
+                    ]
+                }
+            Email is already existing or not
+            password and confirm password is the same or not
+                PayLoad:
+                    {
+                        "username":"Aravind",
+                        "email":"aravind.p@mitrahsoft.com",
+                        "password":"Aravind@123#",
+                        "password2":"Aravind@123"
+                    }
+                response:
+                    {
+                        "error": [
+                            "Enter a valid email address."
+                        ]
+                    }
+        Login:
+            All fields are mandatory
+            Email value is valid or not
+            Email is existing or not. If the Email is existing check the email and password
+        Products:
+            Check the user is authenticated or not
+            URL: http://127.0.0.1:8000/api/products/
+            if a user is not log in:
+                response:
+                    {
+                        "Message": "Permission denied Unauthenticated!"
+                    }

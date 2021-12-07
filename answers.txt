@@ -1,0 +1,10 @@
+1) What is the coding standard that you follow when you write code in Python ?
+    I follow PEP 8 (Python Enhancement Proposal) guidelines to write code in Python.
+2)Do you understand the SOLID principles? And do you use them while you write code?
+    Yes, I understand SOLID principles and I used the Single Responsibility Principle for my code.
+3)What are the Design patterns that you use while writing python code?
+    I use the MVT (Model View Template) pattern for writing my python code.
+    The Model helps to handle the database.
+    The View is used to execute the business logic and interact with a model to carry data and render a Template.
+4)Have you worked in Multiprocessing in Python?
+    I have a little bit of knowledge about multiprocessing. But I can't get a chance to work on it.
